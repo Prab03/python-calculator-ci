@@ -1,2 +1,1 @@
-pytest
-
+# Leave empty unless you need external packages

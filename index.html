@@ -6,30 +6,71 @@
   <title>Python Calculator</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      margin-top: 50px;
+      height: 100vh;
+      margin: 0;
     }
+
+    .calculator {
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    .calculator h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
     input, select, button {
-      padding: 8px;
-      margin: 5px;
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #2c3e50;
     }
   </style>
 </head>
 <body>
-  <h1>Simple Calculator</h1>
-  <input type="number" id="num1" placeholder="Enter first number" />
-  <input type="number" id="num2" placeholder="Enter second number" />
-  <select id="operation">
-    <option value="add">Add</option>
-    <option value="subtract">Subtract</option>
-    <option value="multiply">Multiply</option>
-    <option value="divide">Divide</option>
-  </select>
-  <button onclick="calculate()">Calculate</button>
-  <h2 id="result">Result: </h2>
+  <div class="calculator">
+    <h1>Simple Calculator</h1>
+    <input type="number" id="num1" placeholder="Enter first number" />
+    <input type="number" id="num2" placeholder="Enter second number" />
+    <select id="operation">
+      <option value="add">Add</option>
+      <option value="subtract">Subtract</option>
+      <option value="multiply">Multiply</option>
+      <option value="divide">Divide</option>
+    </select>
+    <button onclick="calculate()">Calculate</button>
+    <h2 id="result">Result: </h2>
+  </div>
 
   <script>
     function calculate() {
@@ -38,11 +79,15 @@
       const op = document.getElementById('operation').value;
       let result;
 
-      switch (op) {
-        case 'add': result = a + b; break;
-        case 'subtract': result = a - b; break;
-        case 'multiply': result = a * b; break;
-        case 'divide': result = b !== 0 ? a / b : 'Cannot divide by zero'; break;
+      if (isNaN(a) || isNaN(b)) {
+        result = "Please enter valid numbers";
+      } else {
+        switch (op) {
+          case 'add': result = a + b; break;
+          case 'subtract': result = a - b; break;
+          case 'multiply': result = a * b; break;
+          case 'divide': result = b !== 0 ? a / b : 'Cannot divide by zero'; break;
+        }
       }
 
       document.getElementById('result').innerText = 'Result: ' + result;
@@ -50,4 +95,3 @@
   </script>
 </body>
 </html>
-
